@@ -1,0 +1,18 @@
+body {
+    margin: 0;
+    padding: 0;
+}
+
+canvas#game {
+    display: block;
+    image-rendering: pixelated;
+}
+
+.hidden {
+    display: none;
+    visibility: hidden;
+}
+
+.resize {
+    size: 100%;
+}
