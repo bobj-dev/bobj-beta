@@ -1,7 +1,5 @@
 'use strict';
 
-const gravity = 5;
-
 var sprites = {};
 
 const Sprite = class Sprite {
@@ -17,7 +15,12 @@ const Sprite = class Sprite {
 
         this.direction = 1;
 
-        this.gravity = 0;
+        this.gravity = 7.5;
+        this.gravitySpeed = 0;
+    }
+
+    accelerate(n) {
+        gravity = n;
     }
 
     draw() {
@@ -31,12 +34,26 @@ const Sprite = class Sprite {
 
     update() {
         this.direction = Math.sign(this.dx) || this.direction;
+
+        this.gravity += this.gravitySpeed;
         
         this.x += this.dx;
         this.y += this.dy + this.gravity;
 
-        while (this.y + 16 >= canvas.height) {
-            this.y--;
+        if (this.y < 0) {
+            this.y = 0;
+        }
+    
+        if (this.x < 0) {
+            this.x = 0;
+        }
+    
+        if (this.x > canvas.width - 16) {
+            this.x = canvas.width - 16;
+        }
+        
+        if (this.y > canvas.height - 16) {
+            this.y = canvas.height - 16;
         }
     }
 }

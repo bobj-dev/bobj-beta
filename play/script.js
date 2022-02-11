@@ -1,21 +1,17 @@
 'use strict';
 
-const canvas = $('canvas');
+const canvas = $('#game');
 const context = canvas.getContext('2d');
 
-const player = sprites.player = new Sprite({image: $('#player')});
+let player = sprites.player = new Sprite({image: $('#player')});
 
 window.addEventListener('keydown', function(e) {
 	if (e.key === 'w' || e.key === 'ArrowUp' || e.key === ' ') {
-		player.dy = -gravity + 1;
+		player.gravity = -7.5;
 	}
 
 	if (e.key === 'a' || e.key === 'ArrowLeft') {
 		player.dx = -player.speed;
-	}
-
-	if (e.key === 's' || e.key === 'ArrowDown') {
-		player.dy = gravity;
 	}
 
 	if (e.key === 'd' || e.key === 'ArrowRight') {
@@ -25,15 +21,11 @@ window.addEventListener('keydown', function(e) {
 
 window.addEventListener('keyup', function(e) {
 	if (e.key === 'w' || e.key === 'ArrowUp' || e.key === ' ') {
-		player.dy = 0;
+		player.gravity = 7.5;
 	}
 
 	if (e.key === 'a' || e.key === 'ArrowLeft') {
 		player.dx = 0;
-	}
-
-	if (e.key === 's' || e.key === 'ArrowDown') {
-		player.dy = 0;
 	}
 
 	if (e.key === 'd' || e.key === 'ArrowRight') {
